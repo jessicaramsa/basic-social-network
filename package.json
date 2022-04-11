@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "dev": "CHOKIDAR_USEPOLLING=true adonis serve --dev",
     "test": "node ace test"
   },
   "keywords": [
@@ -24,10 +25,13 @@
     "@adonisjs/framework": "^5.0.9",
     "@adonisjs/ignitor": "^2.0.8",
     "@adonisjs/lucid": "^6.1.3",
+    "@adonisjs/mail": "^3.1.0",
     "@adonisjs/session": "^1.0.27",
-    "@adonisjs/shield": "^1.0.8"
+    "@adonisjs/shield": "^1.0.8",
+    "adonis-resource-controller": "^0.3.0",
+    "adonis-resource-middleware": "^1.1.0",
+    "mysql": "^2.18.1"
   },
-  "devDependencies": {},
   "autoload": {
     "App": "./app"
   }

@@ -17,3 +17,23 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+Route.get('/login', 'AuthTokenController.login')
+Route.post('/logout', 'AuthTokenController.logout')
+Route.post('/forgot-password', 'PasswordRecoveryCodeController.forgotPassword')
+
+// General users
+Route.group(() => {
+  Route.resource(':resource', 'UserController', ['GET'])
+  Route.resource(':resource', 'PostController', ['GET'])
+}).middleware(['resource', 'auth']).prefix('api')
+
+// Admin users
+Route.group(() => {
+  Route.resource(':resource', 'UserController')
+  Route.resource(':resource', 'PostController')
+}).middleware(['resource', 'auth', 'admin']).prefix('api')
+
+Route.any('*', ({ response }) => {
+  return response.status(404).json({ code: 404, message: 'Not found' })
+})
