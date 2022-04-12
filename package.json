@@ -18,7 +18,7 @@
   "private": true,
   "dependencies": {
     "@adonisjs/ace": "^5.0.8",
-    "@adonisjs/auth": "^3.0.7",
+    "@adonisjs/auth": "^3.2.0",
     "@adonisjs/bodyparser": "~2.0.9",
     "@adonisjs/cors": "^1.0.7",
     "@adonisjs/fold": "^4.0.9",
@@ -30,6 +30,7 @@
     "@adonisjs/shield": "^1.0.8",
     "adonis-resource-controller": "^0.3.0",
     "adonis-resource-middleware": "^1.1.0",
+    "moment": "^2.29.2",
     "mysql": "^2.18.1"
   },
   "autoload": {

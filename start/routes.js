@@ -18,9 +18,10 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-Route.get('/login', 'AuthTokenController.login')
+Route.post('/login', 'AuthTokenController.login')
 Route.post('/logout', 'AuthTokenController.logout')
 Route.post('/forgot-password', 'PasswordRecoveryCodeController.forgotPassword')
+Route.post('/update-password', 'PasswordRecoveryCodeController.updatePassword')
 
 // General users
 Route.group(() => {
