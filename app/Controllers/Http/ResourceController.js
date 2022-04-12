@@ -1,23 +1,35 @@
 'use strict'
 
-const BaseController = require('adonis-resource-controller')
+const Logger = use('Logger')
 
-class ResourceController  {
+class ResourceController {
   /**
    * Show a list of all resources.
    * GET resources
    */
-   async index({ request, response, view, params, Model, auth }) {
-    const query = JSON.parse(request.input('query', '{}'))
-    const data = Model.query(query).paginate(query.page || 1, query.perPage || 10)
-    return data
-  }
+  async index({ request, response, view, params, Model, auth }) {
+    try {
+      const all = request.all()
+      let data = Model.query()
 
-  /**
-   * Render a form to be used for creating a new resource.
-   * GET resources/create
-   */
-  async create({ request, response, view }) {
+      const searchableFields = Model.searchable
+      const isSearchableObject = typeof all.search === Object
+      if (all.search && searchableFields && isSearchableObject) {
+        for (let key in all.search) {
+          data = data.where(key, 'like', `%${all.search[key]}%`)
+        }
+      }
+
+      // include relations
+
+      const page = all.page || 1
+      const perPage = all.perPage || 10
+      return await data.paginate(page, perPage)
+    } catch(err) {
+      Logger.transport('file').error(`ResourceController.index - ${err.stack}`)
+      Logger.transport('file').error(err)
+      return this.returnError(response, err.stack, 400)
+    }
   }
 
   /**
@@ -25,23 +37,14 @@ class ResourceController  {
    * POST resources
    */
   async store({ request, response, Model }) {
-    const model = await Model.create(request.all())
-    return model
-  }
-
-  /**
-   * Display a single resource.
-   * GET resources/:id
-   */
-  async show({ params, request, response, view, Model, model }) {
-    return model
-  }
-
-  /**
-   * Render a form to update an existing resource.
-   * GET resources/:id/edit
-   */
-  async edit({ params, request, response, view }) {
+    try {
+      const model = await Model.create(request.all())
+      return model
+    } catch(err) {
+      Logger.transport('file').error(`ResourceController.store - ${err.stack}`)
+      Logger.transport('file').error(err)
+      return this.returnError(response, err.stack, 400)
+    }
   }
 
   /**
@@ -49,9 +52,15 @@ class ResourceController  {
    * PUT or PATCH resources/:id
    */
   async update({ params, request, response, Model, model }) {
-    model.fill(request.all())
-    await model.save()
-    return model
+    try {
+      model.fill(request.all())
+      await model.save()
+      return model
+    } catch(err) {
+      Logger.transport('file').error(`ResourceController.update - ${err.stack}`)
+      Logger.transport('file').error(err)
+      return this.returnError(response, err.stack, 400)
+    }
   }
 
   /**
@@ -59,8 +68,18 @@ class ResourceController  {
    * DELETE resources/:id
    */
   async destroy({ params, request, response, Model, model }) {
-    await model.delete()
-    return {}
+    try {
+      await model.delete()
+      return {}
+    } catch(err) {
+      Logger.transport('file').error(`ResourceController.destroy - ${err.stack}`)
+      Logger.transport('file').error(err)
+      return this.returnError(response, err.stack, 400)
+    }
+  }
+
+  async returnError(response, message, code) {
+    return response.status(code).send({ message })
   }
 }
 

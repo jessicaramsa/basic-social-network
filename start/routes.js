@@ -24,14 +24,14 @@ Route.post('/forgot-password', 'PasswordRecoveryCodeController.forgotPassword')
 
 // General users
 Route.group(() => {
-  Route.resource(':resource', 'UserController', ['GET'])
-  Route.resource(':resource', 'PostController', ['GET'])
+  Route.get(':resource', 'UserController.index').as(':resource.index')
+  Route.get(':resource', 'PostController.index').as(':resource.index')
 }).middleware(['resource', 'auth']).prefix('api')
 
 // Admin users
 Route.group(() => {
-  Route.resource(':resource', 'UserController')
-  Route.resource(':resource', 'PostController')
+  Route.resource(':resource', 'UserController').except(['index'])
+  Route.resource(':resource', 'PostController').except(['index'])
 }).middleware(['resource', 'auth', 'admin']).prefix('api')
 
 Route.any('*', ({ response }) => {

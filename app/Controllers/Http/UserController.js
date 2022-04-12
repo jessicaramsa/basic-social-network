@@ -1,8 +1,8 @@
 'use strict'
 
-const BaseController = require('adonis-resource-controller')
+const ResourceController = use('App/Controllers/Http/ResourceController')
 
-class UserController extends BaseController {
+class UserController extends ResourceController {
 }
 
 module.exports = UserController

@@ -1,8 +1,8 @@
 'use strict'
 
-const BaseController = require('adonis-resource-controller')
+const ResourceController = use('App/Controllers/Http/ResourceController')
 
-class AuthTokenController extends BaseController {
+class AuthTokenController extends ResourceController {
 }
 
 module.exports = AuthTokenController
