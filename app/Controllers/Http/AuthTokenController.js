@@ -3,8 +3,6 @@
 const moment = use('moment')
 const Logger = use('Logger')
 const Hash = use('Hash')
-const Config = use('Config')
-const jwt = use('jsonwebtoken')
 
 const User = use('App/Models/User')
 const AuthToken = use('App/Models/AuthToken')
@@ -29,15 +27,10 @@ class AuthTokenController extends ResourceController {
       const passwordMatch = await Hash.verify(password, user.password)
       if (!passwordMatch) throw { code: 3, message: 'Invalid credentials' }
 
-      const key = Config.get('app.jwtKey')
-      authToken = jwt.sign({ userId: user.id }, key)
-      await AuthToken.create({
-        user_id: user.id,
-        token: authToken,
-        is_revoked: false,
-      })
-
-      return response.send({ code: 1, message: 'Login successfully', user, authToken })
+      if (await auth.attempt(email, password)) {
+        authToken = await auth.generate(user)
+        return response.send({ code: 1, message: 'Login successfully', user, authToken: authToken.token })
+      }
     } catch(err) {
       Logger.transport('file').error(`AuthTokenController.login - ${err.stack}`)
       Logger.transport('file').error(err)

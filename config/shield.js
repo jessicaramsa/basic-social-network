@@ -132,14 +132,9 @@ module.exports = {
   |
   */
   csrf: {
-    enable: true,
+    enable: false,
     methods: ['POST', 'PUT', 'DELETE'],
-    filterUris: [
-      '/login',
-      '/logout',
-      '/forgot-password',
-      '/update-password',
-    ],
+    filterUris: [],
     cookieOptions: {
       httpOnly: false,
       sameSite: true,

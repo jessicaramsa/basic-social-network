@@ -27,13 +27,13 @@ Route.post('/update-password', 'PasswordRecoveryCodeController.updatePassword')
 Route.group(() => {
   Route.get(':resource', 'UserController.index').as(':resource.index')
   Route.get(':resource', 'PostController.index').as(':resource.index')
-}).middleware(['resource', 'auth']).prefix('api')
+}).middleware(['auth', 'resource']).prefix('api')
 
 // Admin users
 Route.group(() => {
   Route.resource(':resource', 'UserController').except(['index'])
   Route.resource(':resource', 'PostController').except(['index'])
-}).middleware(['resource', 'auth', 'admin']).prefix('api')
+}).middleware(['auth', 'admin', 'resource']).prefix('api')
 
 Route.any('*', ({ response }) => {
   return response.status(404).json({ code: 404, message: 'Not found' })
