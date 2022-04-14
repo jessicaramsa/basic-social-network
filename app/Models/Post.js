@@ -6,6 +6,8 @@ const Model = use('Model')
 class Post extends Model {
   static boot () {
     super.boot()
+    this.addHook('afterFind', 'PostHook.incrementViews')
+    this.addHook('afterPaginate', 'PostHook.incrementViews')
     this.addHook('afterFetch', 'PostHook.incrementViews')
   }
 
