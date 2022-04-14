@@ -3,6 +3,24 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
+/**
+*  @swagger
+*  definitions:
+*    PasswordRecoveryCode:
+*      type: object
+*      properties:
+*        id:
+*          type: uint
+*        user_id:
+*          type: uint
+*        code:
+*          type: string
+*        expiration_date:
+*          type: string
+*      required:
+*        - user_id
+*        - code
+*/
 class PasswordRecoveryCode extends Model {
   static boot () {
     super.boot()

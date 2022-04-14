@@ -28,7 +28,7 @@ module.exports = {
     pool: true,
     port: Env.get('SMTP_PORT'),
     host: Env.get('SMTP_HOST'),
-    secure: Env.get('SMTP_SECURE') || true,
+    secure: Env.get('SMTP_SECURE') === 1 || Env.get('SMTP_SECURE') === 'true',
     auth: {
       user: Env.get('MAIL_USERNAME'),
       pass: Env.get('MAIL_PASSWORD')
@@ -97,6 +97,8 @@ module.exports = {
   |
   */
   ethereal: {
-    driver: 'ethereal'
+    driver: 'ethereal',
+    username: Env.get('MAIL_USERNAME'),
+    password: Env.get('MAIL_PASSWORD')
   }
 }

@@ -59,7 +59,7 @@ class AuthTokenController extends ResourceController {
         .where('email', email)
         .first()
 
-      if (!user) throw { code: 3, message: 'Invalid credentials' }
+      if (!user) throw { code: 3, message: 'User not found' }
 
       const passwordMatch = await Hash.verify(password, user.password)
       if (!passwordMatch) throw { code: 3, message: 'Invalid credentials' }
