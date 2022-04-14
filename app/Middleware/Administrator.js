@@ -14,7 +14,6 @@ class Administrator {
    */
   async handle ({ response, request, auth }, next) {
     const userInfo = auth.user
-    console.log(userInfo.role_id)
 
     const userRole = await Role.query()
       .where('id', userInfo.role_id)
