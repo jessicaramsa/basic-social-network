@@ -111,7 +111,7 @@ The current solution is a simple way to start generating information with the po
 
 In a social network, one of the most important features is the reactions and metrics we can analyze from just a single post. With this information, we can know more about our audience and publish related content on which topics are more popular.
 
-The current design limits the upload process to give support only to those multimedia files that are images, in the long term can add more allowed formats and the users will be freer to upload any kind of content.
+The current design limits to only creating posts with text but we can expand the solution with the upload process of multimedia files, in the long term we can add more allowed formats, and the users will be freer to upload any kind of content.
 
 The following diagram represents the database design with the previous features that will be added.
 
