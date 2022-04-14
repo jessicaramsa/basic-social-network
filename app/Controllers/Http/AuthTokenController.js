@@ -9,6 +9,43 @@ const AuthToken = use('App/Models/AuthToken')
 const ResourceController = use('App/Controllers/Http/ResourceController')
 
 class AuthTokenController extends ResourceController {
+  /**
+  * @swagger
+  * /login:
+  *   post:
+  *     tags:
+  *       - Auth
+  *     summary: Log in to the application
+  *     parameters:
+  *       - name: email
+  *         description: Email of the user
+  *         in: query
+  *         required: true
+  *         type: string
+  *       - name: password
+  *         description: Password of the user
+  *         in: query
+  *         required: true
+  *         type: string
+  *     responses:
+  *       200:
+  *         description: Send user information and authorization token
+  *         example:
+  *           code: 1
+  *           message: Login successfully
+  *           user:
+  *             id: 1
+  *             role_id: 1
+  *             first_name: Sherpa
+  *             last_name: Brokers
+  *             username: sherpabrokers
+  *             email: dev.sherpa@gmail.com
+  *             password: encryptedpassword
+  *             created_at: 2022-04-11 03:17:04
+  *             updated_at: 2022-04-13 02:03:11
+  *             deleted_at: null
+  *           authToken: authtoken
+  */
   async login({ response, auth, request }) {
     try {
       const { email, password } = request.only(['email', 'password'])
@@ -41,6 +78,22 @@ class AuthTokenController extends ResourceController {
     }
   }
 
+/**
+  * @swagger
+  * /logout:
+  *   post:
+  *     tags:
+  *       - Auth
+  *     summary: Log out from the application
+  *     security:
+  *       - bearerAuth: []
+  *     responses:
+  *       200:
+  *         description: Send successful code and message
+  *         example:
+  *           code: 1
+  *           message: Log out successfully
+  */
   async logout({ response, request }) {
     try {
       const authHeader = request.header('Authorization') || ''
@@ -58,7 +111,7 @@ class AuthTokenController extends ResourceController {
       Logger.transport('file').error(`AuthTokenController.logout - ${err.stack}`)
       Logger.transport('file').error(err)
     } finally {
-      return response.send({ message: 'Logout successfully', code: 1 })
+      return response.send({ message: 'Log out successfully', code: 1 })
     }
   }
 }

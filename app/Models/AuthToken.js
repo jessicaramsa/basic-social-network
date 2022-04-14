@@ -3,6 +3,24 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
+/**
+*  @swagger
+*  definitions:
+*    AuthToken:
+*      type: object
+*      properties:
+*        id:
+*          type: uint
+*        user_id:
+*          type: uint
+*        token:
+*          type: string
+*        is_revoked:
+*          type: boolean
+*      required:
+*        - user_id
+*        - token
+*/
 class AuthToken extends Model {
   static boot () {
     super.boot()
