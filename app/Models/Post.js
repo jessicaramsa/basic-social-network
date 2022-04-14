@@ -3,10 +3,30 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
+/**
+*  @swagger
+*  definitions:
+*    Post:
+*      type: object
+*      properties:
+*        id:
+*          type: uint
+*        user_id:
+*          type: uint
+*        title:
+*          type: string
+*        description:
+*          type: string
+*        views:
+*          type: int
+*      required:
+*        - user_id
+*        - title
+*        - description
+*/
 class Post extends Model {
   static boot () {
     super.boot()
-    this.addHook('afterFind', 'PostHook.incrementViews')
     this.addHook('afterPaginate', 'PostHook.incrementViews')
     this.addHook('afterFetch', 'PostHook.incrementViews')
   }

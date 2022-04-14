@@ -5,6 +5,33 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
+/**
+*  @swagger
+*  definitions:
+*    User:
+*      type: object
+*      properties:
+*        id:
+*          type: uint
+*        role_id:
+*          type: uint
+*        first_name:
+*          type: string
+*        last_name:
+*          type: string
+*        username:
+*          type: string
+*        email:
+*          type: string
+*        password:
+*          type: string
+*      required:
+*        - role_id
+*        - first_name
+*        - username
+*        - email
+*        - password
+*/
 class User extends Model {
   static boot () {
     super.boot()

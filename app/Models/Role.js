@@ -3,6 +3,19 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
+/**
+*  @swagger
+*  definitions:
+*    Role:
+*      type: object
+*      properties:
+*        id:
+*          type: uint
+*        name:
+*          type: string
+*      required:
+*        - name
+*/
 class Role extends Model {
   static boot () {
     super.boot()
