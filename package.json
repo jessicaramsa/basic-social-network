@@ -28,8 +28,10 @@
     "@adonisjs/mail": "^3.1.0",
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
+    "@adonisjs/validator": "^5.1.0",
     "adonis-resource-controller": "^0.3.0",
     "adonis-resource-middleware": "^1.1.0",
+    "adonis-swagger": "^1.2.9",
     "moment": "^2.29.2",
     "mysql": "^2.18.1"
   },
