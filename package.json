@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "CHOKIDAR_USEPOLLING=true adonis serve --dev",
+    "dev": "adonis serve --dev",
     "test": "node ace test"
   },
   "keywords": [
