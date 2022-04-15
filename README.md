@@ -105,6 +105,8 @@ To authorize the web services:
 
 5. Click on the button `Authorize` and then click `Done`
 
+![API documentation](https://github.com/jessicaramsa/sherpabrokers-back-challenge/blob/develop/resources/imgs/docs3.png?raw=true)
+
 ## Scalability
 
 The current solution is a simple way to start generating information with the posts and maybe in the future give a more scalable solution where all the users can follow topics, and other users.
