@@ -16,7 +16,7 @@ module.exports = {
   |
   */
 
-  name: Env.get('APP_NAME', 'AdonisJs'),
+  name: Env.get('APP_NAME', 'AdonisJs') || process.env.APP_NAME || 'AdonisJs',
 
   /*
   |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ module.exports = {
   | to encrypted cookies, sessions and other sensitive data.
   |
   */
-  appKey: Env.getOrFail('APP_KEY'),
+  appKey: Env.getOrFail('APP_KEY') || process.env.APP_KEY,
 
   /*
   |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ module.exports = {
   | JWT that servers expects from clients.
   |
   */
-  jwtKey: Env.get('JWT_KEY'),
+  jwtKey: Env.get('JWT_KEY') || process.env.JWT_KEY,
 
   http: {
     /*
@@ -117,7 +117,7 @@ module.exports = {
     | production to optimize view loading time.
     |
     */
-    cache: Env.get('CACHE_VIEWS', true)
+    cache: Env.get('CACHE_VIEWS', true) || process.env.CACHE_VIEWS || true
   },
 
   static: {

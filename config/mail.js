@@ -12,8 +12,8 @@ module.exports = {
   | define a driver too.
   |
   */
-  connection: Env.get('MAIL_CONNECTION', 'smtp'),
-  from: Env.get('MAIL_FROM', 'no-reply@jessicaramsa.com'),
+  connection: Env.get('MAIL_CONNECTION', 'smtp') || process.env.MAIL_CONNECTION,
+  from: Env.get('MAIL_FROM', 'no-reply@jessicaramsa.com') || process.env.MAIL_FROM || 'no-reply@jessicaramsa.com',
 
   /*
   |--------------------------------------------------------------------------
@@ -26,12 +26,12 @@ module.exports = {
   smtp: {
     driver: 'smtp',
     pool: true,
-    port: Env.get('SMTP_PORT'),
-    host: Env.get('SMTP_HOST'),
-    secure: Env.get('SMTP_SECURE') === 1 || Env.get('SMTP_SECURE') === 'true',
+    port: Env.get('SMTP_PORT') || process.env.SMTP_PORT,
+    host: Env.get('SMTP_HOST') || process.env.SMTP_HOST,
+    secure: Env.get('SMTP_SECURE') === 1 || Env.get('SMTP_SECURE') === 'true' || process.env.SMTP_SECURE,
     auth: {
-      user: Env.get('MAIL_USERNAME'),
-      pass: Env.get('MAIL_PASSWORD')
+      user: Env.get('MAIL_USERNAME') || process.env.MAIL_USERNAME,
+      pass: Env.get('MAIL_PASSWORD') || process.env.MAIL_PASSWORD
     },
     maxConnections: 5,
     maxMessages: 100,
@@ -56,7 +56,7 @@ module.exports = {
   */
   sparkpost: {
     driver: 'sparkpost',
-    apiKey: Env.get('SPARKPOST_API_KEY'),
+    apiKey: Env.get('SPARKPOST_API_KEY') || process.env.SPARKPOST_API_KEY,
     extras: {}
   },
 
@@ -79,9 +79,9 @@ module.exports = {
   */
   mailgun: {
     driver: 'mailgun',
-    domain: Env.get('MAILGUN_DOMAIN'),
-    apiKey: Env.get('MAILGUN_API_KEY'),
-    region: Env.get('MAILGUN_API_REGION'),
+    domain: Env.get('MAILGUN_DOMAIN') || process.env.MAILGUN_DOMAIN,
+    apiKey: Env.get('MAILGUN_API_KEY') || process.env.MAILGUN_API_KEY,
+    region: Env.get('MAILGUN_API_REGION') || process.env.MAILGUN_API_REGION,
     extras: {}
   },
 
@@ -98,7 +98,7 @@ module.exports = {
   */
   ethereal: {
     driver: 'ethereal',
-    username: Env.get('MAIL_USERNAME'),
-    password: Env.get('MAIL_PASSWORD')
+    username: Env.get('MAIL_USERNAME') || process.env.MAIL_USERNAME,
+    password: Env.get('MAIL_PASSWORD') || process.env.MAIL_PASSWORD
   }
 }

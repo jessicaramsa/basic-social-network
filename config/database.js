@@ -16,7 +16,7 @@ module.exports = {
   | interacting with SQL databases.
   |
   */
-  connection: Env.get('DB_CONNECTION', 'sqlite'),
+  connection: Env.get('DB_CONNECTION', 'sqlite') || process.env.DB_CONNECTION,
 
   /*
   |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ module.exports = {
   sqlite: {
     client: 'sqlite3',
     connection: {
-      filename: Helpers.databasePath(`${Env.get('DB_DATABASE', 'development')}.sqlite`)
+      filename: Helpers.databasePath(`${Env.get('DB_DATABASE', 'development')}.sqlite`) || Helpers.databasePath(`${process.env.DB_DATABASE}.sqlite`)
     },
     useNullAsDefault: true
   },
@@ -50,11 +50,11 @@ module.exports = {
   mysql: {
     client: 'mysql',
     connection: {
-      host: Env.get('DB_HOST', 'localhost'),
-      port: Env.get('DB_PORT', ''),
-      user: Env.get('DB_USER', 'root'),
-      password: Env.get('DB_PASSWORD', ''),
-      database: Env.get('DB_DATABASE', 'adonis'),
+      host: Env.get('DB_HOST', 'localhost') || process.env.DB_HOST,
+      port: Env.get('DB_PORT', '') || process.env.DB_PORT,
+      user: Env.get('DB_USER', 'root') || process.env.DB_USER,
+      password: Env.get('DB_PASSWORD', '') || process.env.DB_PASSWORD,
+      database: Env.get('DB_DATABASE', 'adonis') || process.env.DB_DATABASE,
       ssl: {
         rejectUnauthorized: true
       }
@@ -74,11 +74,11 @@ module.exports = {
   pg: {
     client: 'pg',
     connection: {
-      host: Env.get('DB_HOST', 'localhost'),
-      port: Env.get('DB_PORT', ''),
-      user: Env.get('DB_USER', 'root'),
-      password: Env.get('DB_PASSWORD', ''),
-      database: Env.get('DB_DATABASE', 'adonis')
+      host: Env.get('DB_HOST', 'localhost') || process.env.DB_HOST,
+      port: Env.get('DB_PORT', '') || process.env.DB_PORT,
+      user: Env.get('DB_USER', 'root') || process.env.DB_USER,
+      password: Env.get('DB_PASSWORD', '') || process.env.DB_PASSWORD,
+      database: Env.get('DB_DATABASE', 'adonis') || process.env.DB_DATABASE
     }
   }
 }
