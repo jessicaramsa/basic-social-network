@@ -1,6 +1,6 @@
-# Sherpa Brokers Back Challenge
+# Basic Social Network API
 
-Backend Technical Test for applying for a developer position at Sherpa Brokers.
+Backend Technical test to build a basic social network.
 
 ## Context and scope
 This is a backend technical test that presents a basic social network, there will be two types of users, both of them can retrieve posts information with differences in their permissions.
@@ -31,7 +31,7 @@ The application retrieves all the information from a relational database with My
 - The database is provided by [Planetscale](https://planetscale.com/)
 - Deployed to [Netlify](https://www.netlify.com/)
 
-![Database design for current solution](https://github.com/jessicaramsa/sherpabrokers-back-challenge/blob/develop/resources/imgs/solution.png?raw=true)
+![Database design for current solution](https://github.com/jessicaramsa/basic-social-network/blob/main/resources/imgs/solution.png?raw=true)
 
 ## Instructions
 
@@ -40,7 +40,7 @@ The application retrieves all the information from a relational database with My
 Clone the repository via HTTPS
 
 ```bash
-git clone https://github.com/jessicaramsa/sherpabrokers-back-challenge.git
+git clone https://github.com/jessicaramsa/basic-social-network.git
 ```
 
 Install [Adonis.js v4.1](https://legacy.adonisjs.com/docs/4.1/installation#_installing_adonisjs) globally via npm
@@ -97,15 +97,15 @@ To authorize the web services:
 
 3. Click on the `Authorize 🔒` button on the up to the right
 
-![Authorize button](https://github.com/jessicaramsa/sherpabrokers-back-challenge/blob/develop/resources/imgs/docs1.png?raw=true)
+![Authorize button](https://github.com/jessicaramsa/basic-social-network/blob/main/resources/imgs/docs1.png?raw=true)
 
 4. On the value field, enter the word `Bearer` and the value of the authorization token you copied in the second step 
 
-![Authorization token](https://github.com/jessicaramsa/sherpabrokers-back-challenge/blob/develop/resources/imgs/docs2.png?raw=true)
+![Authorization token](https://github.com/jessicaramsa/basic-social-network/blob/main/resources/imgs/docs2.png?raw=true)
 
 5. Click on the button `Authorize` and then click `Done`
 
-![API documentation](https://github.com/jessicaramsa/sherpabrokers-back-challenge/blob/develop/resources/imgs/docs3.png?raw=true)
+![API documentation](https://github.com/jessicaramsa/basic-social-network/blob/main/resources/imgs/docs3.png?raw=true)
 
 ## Scalability
 
@@ -117,10 +117,10 @@ The current design limits to only creating posts with text but we can expand the
 
 The following diagram represents the database design with the previous features that will be added.
 
-![Database design for a scalable solution](https://github.com/jessicaramsa/sherpabrokers-back-challenge/blob/develop/resources/imgs/scalability1.png?raw=true)
+![Database design for a scalable solution](https://github.com/jessicaramsa/basic-social-network/blob/main/resources/imgs/scalability1.png?raw=true)
 
 Additionally, a second database will be created to store all the information related to analytical as metrics about the posts, reactions, and users' activity.
 
 This database will be very important for all the metrics and reports that can be created starting from users' activity.
 
-![Database design for a scalable solution with metrics](https://github.com/jessicaramsa/sherpabrokers-back-challenge/blob/develop/resources/imgs/scalability2.png?raw=true)
+![Database design for a scalable solution with metrics](https://github.com/jessicaramsa/basic-social-network/blob/main/resources/imgs/scalability2.png?raw=true)
